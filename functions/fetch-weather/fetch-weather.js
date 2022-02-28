@@ -1,13 +1,17 @@
 const axios = require('axios')
 
 const handler = async (event) => {
-  const {lat, long} = event.queryStringParameters
+  const {maxRecords, view} = event.queryStringParameters
 
   const API_SECRET = process.env.API_SECRET 
-  const url = `http://api.weatherstack.com/current?access_key=${API_SECRET}&query=${lat},${long}&forcast_days=4`
+  const url = `https://api.airtable.com/v0/appH9pGf1FeVfhzUe/Table1?maxRecords=${maxRecords}&view=${view}`
 
   try {
-    const { data } = await axios.get(url)
+    const { data } = await axios.get(url,{
+      headers: {
+        authorization: API_SECRET,
+      },
+    });
 
     return {
       statusCode: 200,
