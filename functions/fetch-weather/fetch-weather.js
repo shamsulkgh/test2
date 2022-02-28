@@ -3,13 +3,13 @@ const axios = require('axios')
 const handler = async (event) => {
   const {maxRecords, view} = event.queryStringParameters
 
-  const API_SECRET = process.env.API_SECRET 
-  const url = `https://api.airtable.com/v0/appH9pGf1FeVfhzUe/Table1?maxRecords=${maxRecords}&view=${view}`
+  //const API_SECRET = process.env.API_SECRET 
+  const url = `https://api.airtable.com/v0/appH9pGf1FeVfhzUe/Table1?maxRecords=3&view=grid%20View`
 
   try {
     const { data } = await axios.get(url,{
       headers: {
-        authorization: API_SECRET,
+        authorization: process.env.API_SECRET,
       },
     });
 
